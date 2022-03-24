@@ -185,18 +185,18 @@ table {
                     </tr>
                 </table>
             </div>
-            <div style="font-size:80%;">
+            <div style="font-size:50%;">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">&copy;2022</td>
-                        <td style="width:50%;">Kenneth Crawford</td>
+                        <td style="width:50%; text-align:right;">переведено с <a href="https://octordle.com" target="_blank">Octordle</a></td>
+                        <td style="width:50%;">by Kenneth Crawford</td>
                     </tr>
                 </table>
             </div>
             <div style="font-size:50%;">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">based on <a href="https://quordle.com" target="_blank">Quordle</a></td>
+                        <td style="width:50%; text-align:right;">основано на <a href="https://quordle.com" target="_blank">Quordle</a></td>
                         <td style="width:50%;">by @fireph</td>
                     </tr>
                 </table>
@@ -204,7 +204,7 @@ table {
             <div style="font-size:50%;">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">based on <a href="https://zaratustra.itch.io/dordle" target="_blank">Dordle</a></td>
+                        <td style="width:50%; text-align:right;">основано на <a href="https://zaratustra.itch.io/dordle" target="_blank">Dordle</a></td>
                         <td style="width:50%;">by Guilherme S. T&ouml;ws</td>
                     </tr>
                 </table>
@@ -212,13 +212,10 @@ table {
             <div id="tutorial1" style="padding:12px;cursor:pointer;">
                 <img src="help_outline.svg" width="32" height="32">
             </div>
-            <div id="giveordle" style="padding:12px;cursor:pointer;font-size: .75rem;">
-                #giveordle - <span id="giveordle-text"></span>
-            </div>
-            <div class="box bg1" style="width: 60%; border:double;cursor:pointer;" id="daily">
+            <div class="box bg1" style="width: 90%; border:double;cursor:pointer;" id="daily">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">daily</td>
+                        <td style="width:50%; text-align:right;">ежедневный</td>
                         <td style="width:50%; color:black;">octordle</td>
                     </tr>
                 </table>
@@ -227,8 +224,8 @@ table {
             <div class="bg3" style="font-size:80%;">
                 <table style="width:100%; color:black;">
                     <tr>
-                        <td style="width:50%; text-align:right;">a new Octordle</td>
-                        <td style="width:50%;">each day</td>
+                        <td style="width:50%; text-align:right;">новый Octordle</td>
+                        <td style="width:50%;">каждый день</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -237,10 +234,10 @@ table {
                 </table>
             </div>
             <div class="button">&nbsp;</div>
-            <div class="box bg5" style="width: 60%; border:double;cursor:pointer;" id="free">
+            <div class="box bg5" style="width: 90%; border:double;cursor:pointer;" id="free">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right; color:black;">free</td>
+                        <td style="width:50%; text-align:right; color:black;">случайный</td>
                         <td style="width:50%;">Octordle</td>
                     </tr>
                 </table>
@@ -249,92 +246,89 @@ table {
             <div class="bg4" style="font-size:80%;">
                 <table style="width:100%; color:black;">
                     <tr>
-                        <td style="width:50%; text-align:right;">play as much</td>
-                        <td style="width:50%;">as you want</td>
+                        <td style="width:50%; text-align:right;">не ждите </td>
+                        <td style="width:50%;">следующий день</td>
                     </tr>
                     <tr>
-                        <td style="text-align:right;">every octordle</td>
-                        <td>is a surprise</td>
+                        <td style="text-align:right;">каждый octordle</td>
+                        <td>случаен</td>
                     </tr>
                 </table>
             </div>
             <div style="height:32px;">&nbsp;</div>
             <div class="box" style="width: 60%; border:double;cursor:pointer;" id="widescreen-reset">
-                Reset Widescreen Mode
+                Полноэкранный режим
             </div>
         </center>
     </div>
     <div id="tutorial" style="width:100%;height:100%;overflow:auto;padding-left:8px;padding-right:8px;font-size:50%;display:none;color:white;background-color:rgb(24, 26, 27);">
         <table style="width: 100%;font-size:200%;">
             <tr>
-                <td class="box" style="border: none; border-style: double; width:35%;cursor:pointer;" id="leave_tutorial">back</td>
+                <td class="box" style="border: none; border-style: double; width:35%;cursor:pointer;" id="leave_tutorial">назад</td>
             </tr>
         </table>
-        <h3>#giveordle</h3>
-        <p>Recently Wordle exploded and brought joy to millions of people. It has inspired countless clones including Octordle that owe their success solely to Wordle.
-            Through Octordle, I ask that you add brightness to the world through doing good. Perhaps #giveordle will take off like Wordle did.</p>
 
-        <h3>Guess all eight OCTORDLE words in 13 tries.</h3>
-        <p>Each guess must be a valid 5 letter word. Hit the enter button to submit.<br><br>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
-        <h2>Examples</h2>
+        <h3>Угадайте все 8 слов OCTORDLE за 13 попыток.</h3>
+        <p>Каждая попытка должна быть пятибуквенным словом. Для проверки нажмите кнопу ввода.<br><br>После каждой попытки цвет клетки изменится в зависимости от близости введенного слова к загаданному.</p>
+        <h2>Например</h2>
         <table style="width: 50%; border-spacing:0px;font-size:200%;">
             <tr>
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%"  style="background-color:#00cc88;color:black;">C</td>
-                            <td class="box button" width="20%" >R</td>
-                            <td class="box button" width="20%" >O</td>
-                            <td class="box button" width="20%" >W</td>
-                            <td class="box button" width="20%" >N</td>
+                            <td class="box button" width="20%"  style="background-color:#00cc88;color:black;">Г</td>
+                            <td class="box button" width="20%" >Р</td>
+                            <td class="box button" width="20%" >Е</td>
+                            <td class="box button" width="20%" >Ч</td>
+                            <td class="box button" width="20%" >А</td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-        <p>The letter C is in the word and in the correct spot.<br><br></p>
+        <p>Буква Г есть в загаданном слове, и находится в правильной клетке.<br><br></p>
         <table style="width: 50%; border-spacing:0px;font-size:200%;">
             <tr>
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%" >B</td>
-                            <td class="box button" width="20%"  style="background-color:#ffcc00;color:black;">A</td>
-                            <td class="box button" width="20%" >D</td>
-                            <td class="box button" width="20%" >G</td>
-                            <td class="box button" width="20%" >E</td>
+                            <td class="box button" width="20%" >М</td>
+                            <td class="box button" width="20%"  style="background-color:#ffcc00;color:black;">Е</td>
+                            <td class="box button" width="20%" >Т</td>
+                            <td class="box button" width="20%" >Р</td>
+                            <td class="box button" width="20%" >О</td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-        <p>The letter A is in the word but in the wrong spot.<br><br></p>
+        <p>Буква Е есть в загаданном слове, но в другой клетке.<br><br></p>
         <table style="width: 50%; border-spacing:0px;font-size:200%;">
             <tr>
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%" >C</td>
-                            <td class="box button" width="20%" >O</td>
-                            <td class="box button" width="20%" >M</td>
-                            <td class="box button" width="20%" >F</td>
-                            <td class="box button" width="20%" >Y</td>
+                            <td class="box button" width="20%" >Л</td>
+                            <td class="box button" width="20%" >Е</td>
+                            <td class="box button" width="20%" >В</td>
+                            <td class="box button" width="20%" >Ш</td>
+                            <td class="box button" width="20%" >А</td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-        <p>The letters C, O, M, F, Y are not in the word in any spot.<br><br>When you type a guess in OCTORDLE, you will guess that word for all eight words that you are solving. All eight words you are solving will be different.<br></p>
+        <p>Букв Л, Е, В, Ш, А нет в загаданном слове.<br><br>При игре в OCTORDLE введенное слово сравнивается сразу с восемью загаданными словами. Все восемь загаданных слов различны.<br></p>
         <table style="width: 100%; border-spacing:0px;font-size:200%;">
             <tr>
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%">W</td>
-                            <td class="box button" width="20%">O</td>
-                            <td class="box button" width="20%">R</td>
-                            <td class="box button" width="20%">L</td>
-                            <td class="box button" width="20%">D</td>
+                            <td class="box button" width="20%">П</td>
+                            <td class="box button" width="20%">О</td>
+                            <td class="box button" width="20%">Э</td>
+                            <td class="box button" width="20%">М</td>
+                            <td class="box button" width="20%">А</td>
                         </tr>
                     </table>
                     <table style="width: 100%;" class="table_guesses">
@@ -359,11 +353,11 @@ table {
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%" >W</td>
-                            <td class="box button" width="20%">O</td>
-                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">R</td>
-                            <td class="box button" width="20%">L</td>
-                            <td class="box button" width="20%" style="background-color:#00cc88;color:black;">D</td>
+                            <td class="box button" width="20%" >П</td>
+                            <td class="box button" width="20%">О</td>
+                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">Э</td>
+                            <td class="box button" width="20%">М</td>
+                            <td class="box button" width="20%" style="background-color:#00cc88;color:black;">А</td>
                         </tr>
                     </table>
                     <table style="width: 100%;" class="table_guesses">
@@ -390,11 +384,11 @@ table {
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%">W</td>
-                            <td class="box button" width="20%">O</td>
-                            <td class="box button" width="20%">R</td>
-                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">L</td>
-                            <td class="box button" width="20%">D</td>
+                            <td class="box button" width="20%">П</td>
+                            <td class="box button" width="20%">О</td>
+                            <td class="box button" width="20%">Э</td>
+                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">М</td>
+                            <td class="box button" width="20%">А</td>
                         </tr>
                     </table>
                     <table style="width: 100%;" class="table_guesses">
@@ -419,11 +413,11 @@ table {
                 <td style="width: 50%; padding:0px;">
                     <table style="width: 100%;" class="table_guesses">
                         <tr>
-                            <td class="box button" width="20%">W</td>
-                            <td class="box button" width="20%" style="background-color:#00cc88;color:black;">O</td>
-                            <td class="box button" width="20%">R</td>
-                            <td class="box button" width="20%">L</td>
-                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">D</td>
+                            <td class="box button" width="20%">П</td>
+                            <td class="box button" width="20%" style="background-color:#00cc88;color:black;">О</td>
+                            <td class="box button" width="20%">Э</td>
+                            <td class="box button" width="20%">М</td>
+                            <td class="box button" width="20%" style="background-color:#ffcc00;color:black;">А</td>
                         </tr>
                     </table>
                     <table style="width: 100%;" class="table_guesses">
@@ -447,22 +441,22 @@ table {
                 </td>
             </tr>
         </table>
-        <p>For the guess WORLD:
+        <p>Для слова ПОЭМА:
             <ol>
-                <li>The top left word has none of the letters.</li>
-                <li>The top right word has the R in the wrong spot and the D in the correct spot.</li>
-                <li>The bottom left word has the L in the wrong spot.</li>
-                <li>The bottom right word has the O in the right spot and the D in the wrong spot.</li>
+                <li>Левое верхнее загаданное слово не содержит таких букв.</li>
+                <li>Правое верхнее загадонное слово содержит Э в другой клетке, и А в верной клетке.</li>
+                <li>Левое нижнее слово содежит М в другой клетке.</li>
+                <li>Правое нижнее слово содержит О в верной клетке, но А в другой.</li>
             </ol>
         </p>
-        <p>You have 13 guesses to get all 8 words correct. Good luck!</p>
-        <p>A new Octordle will be available each day!<br><br></p>
+        <p>У вас 13 попыток, чтобы отгадать все 8 слов. Удачи!</p>
+        <p>Новый набор слов доступен каждый день!<br><br></p>
     </div>
     <div id="game" style="display: none;flex-direction: column;" width="100%">
         <table style="width: 100%;">
             <tr>
-                <td class="box" style="border: none; border-style: double; width:25%;cursor:pointer;" id="restart">back</td>
-                <td class="box" style="border: none; border-style: double; width:20%;cursor:pointer;display:none;" id="reset_free">new</td>
+                <td class="box" style="border: none; border-style: double; width:25%;cursor:pointer;" id="restart">назад</td>
+                <td class="box" style="border: none; border-style: double; width:20%;cursor:pointer;display:none;" id="reset_free">новый</td>
                 <td style="width:*; text-align:center;font-size:75%;" id="game_title"></td>
                 <td id="tutorial2" style="padding:6px;cursor:pointer;width:32px;">
                     <img src="help_outline.svg" width="32" height="32">
@@ -477,13 +471,13 @@ table {
         </table>
         <table id="widescreen-question" style="width: 100%; font-size: 75%">
             <td style="width:*">
-                Want to try widescreen mode?
+                Перевести в полноэкранный режим?
             </td>
             <td class="box" id="widescreen-yes">
-                Yes
+                Да
             </td>
             <td class="box" id="widescreen-no">
-                No
+                Нет
             </td>
         </table>
         <table id="widescreen-feedback" style="width: 100%; font-size: 75%">
@@ -588,7 +582,7 @@ table {
                 </tr> -->
                 <tr height="14.2%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;padding:8px;" id="share_clipboard">
-                        copy to clipboard
+                        скопировать
                     </td>
                 </tr>
                 <!-- <tr height="20%">
@@ -1262,13 +1256,13 @@ function time_to_next() {
     var timeLeftHours = Math.floor(timeLeftMinutes / 60);
 
     if(timeLeftHours > 0) {
-        return format(timeLeftHours, " hour")
+        return timeLeftHours + " ч."
     } else if(timeLeftMinutes > 0) {
-        return format(timeLeftMinutes, " minute")
+        return timeLeftMinutes + " мин."
     } else if(timeLeftSeconds < 0) {
         return null;
     } else{
-        return format(timeLeftSeconds, " second")
+        return timeLeftSeconds + " сек."
     }
 
     function format(value, name) {
@@ -1286,7 +1280,7 @@ function setTimeToNext() {
     if (!window.no_localstorage) {
         var next_description = time_to_next();
         if (next_description == null) printclear(acquire("next_daily"), "every day");
-        else printclear(acquire("next_daily"), "(next in " + next_description + ")");
+        else printclear(acquire("next_daily"), "(следующий через " + next_description + ")");
     }
 }
 
@@ -1303,7 +1297,7 @@ function restart() {
         var startDate = (new Date('01/24/2022'));
         seed = Math.floor((date.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
-        printclear(acquire("game_title"), "daily octordle #" + seed.toString(10).padStart(4, "0"));
+        printclear(acquire("game_title"), "ежедневный octordle #" + seed.toString(10).padStart(4, "0"));
         window.last_daily = seed;
         if (!window.no_localstorage) {
             try {
@@ -1335,7 +1329,7 @@ function restart() {
         if (!rnd) {
             rnd = new MersenneTwister();
         }
-        printclear(acquire("game_title"), "free octordle");
+        printclear(acquire("game_title"), "случайный octordle");
     }
     rnd.genrand_int31();
     rnd.genrand_int31();
@@ -1613,7 +1607,7 @@ acquire("share_clipboard").onclick = function() {
 // }
 acquire("reset_free").onclick = function() {
     vibrate();
-    if (isInWebViewiOS || confirm("Are you sure you want to start a new Free Octordle? (The current game will be deleted)")) {
+    if (isInWebViewiOS || confirm("Начать новый случайный Octordle? (Текущая игра будет потеряна)")) {
         window.localStorage.removeItem("free_guesses");
         window.localStorage.removeItem("last_free");
         initFree();
@@ -1675,7 +1669,7 @@ function do_share(copy, shareType) {
 
     let shouldShowWords = line >= TOTAL_LINES || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0) && answer_correct[4] >= 0 && answer_correct[5] >= 0 && answer_correct[6] >= 0 && answer_correct[7] >= 0;
     if (daily_mode) {
-        text_share = "Daily Octordle #" + seed.toString(10) + "\n" +
+        text_share = "Ежедневный Octordle #" + seed.toString(10) + "\n" +
             get_num_emoji(answer_correct[0]) +
             get_num_emoji(answer_correct[1]) + "\n" +
             get_num_emoji(answer_correct[2]) +
