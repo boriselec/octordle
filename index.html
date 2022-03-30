@@ -1332,7 +1332,7 @@ function restart() {
             test("Fri Mar 25 2022 01:42:38 GMT-0500 (Central Daylight Time)", 60)
             test("Fri Mar 25 2022 23:42:38 GMT-0500 (Central Daylight Time)", 60)
          */
-        seed = dateDiffInDays(new Date('01/24/2022'), new Date());
+        seed = dateDiffInDays(new Date('03/30/2022'), new Date());
 
         printclear(acquire("game_title"), "ежедневный octordle #" + seed.toString(10).padStart(4, "0"));
         window.last_daily = seed;
