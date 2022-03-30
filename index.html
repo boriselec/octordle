@@ -480,17 +480,6 @@ table {
                 Нет
             </td>
         </table>
-        <table id="widescreen-feedback" style="width: 100%; font-size: 75%">
-            <td style="width:*">
-                Полноэкранный режим работает хорошо?
-            </td>
-            <td class="box" id="widescreen-feedback-yes">
-                Да
-            </td>
-            <td class="box" id="widescreen-feedback-no">
-                Нет
-            </td>
-        </table>
         <div id="normal-container" style="width: 100%;flex: 1;overflow: auto;">
             <table style="width: 100%; border-spacing:0px;">
                 <tr>
@@ -554,7 +543,7 @@ table {
             <table width="100%">
                 <tr height="14.2%">
                     <td rowspan=5 style="width:50%;">
-                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=25 id="share_content">test</textarea>
+                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows="7" id="share_content">test</textarea>
                     </td>
                     <td style="font-size:75%; width:50%; text-align:center; vertical-align: top; padding-top: 15px;">
                         <div style="font-size:75%; width:50%; text-align:center; white-space: pre;" id="answer12">&nbsp;</div>
@@ -1271,7 +1260,7 @@ function time_to_next() {
 }
 
 function addDays(date, days) {
-    var d = new Date(date)
+    let d = new Date(date)
     d.setDate(date.getDate() + days);
     return d;
 }
@@ -1287,15 +1276,63 @@ function setTimeToNext() {
 setInterval(setTimeToNext, 1000);
 setTimeToNext();
 
+
+//https://stackoverflow.com/a/15289883/453449
+function dateDiffInDays(a, b) {
+    // Discard the time and time-zone information.
+    const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+
 function restart() {
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
 
     show_post_game(false);
 
     if (daily_mode) {
-        var date = (new Date());
-        var startDate = (new Date('03/28/2022'));
-        seed = Math.floor((date.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        /*
+            This code has had problems related to DST. This latest change seems to fix it, but in case it breaks
+            again, you can use this to test in jsfiddle.
+
+            function dateDiffInDays(a, b) {
+                // Discard the time and time-zone information.
+                const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+                const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+                const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+                return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+            }
+
+
+            function test(date, expectedSeed) {
+              var date = (new Date(date));
+              var startDate = (new Date('03/28/2022'));
+
+              seed = dateDiffInDays(startDate, date);
+
+              if(expectedSeed != seed) {
+                console.log(`${expectedSeed == seed}   - ${seed}    - #{date}`)
+                console.log(seed);
+                console.log((date.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+                console.log(" ")
+              }
+            }
+
+            test("Fri Feb 01 2022 22:59:38 GMT-0600 (Central Daylight Time)", 8)
+            test("Fri Feb 01 2022 23:59:38 GMT-0600 (Central Daylight Time)", 8)
+            test("Fri Feb 02 2022 00:15:38 GMT-0600 (Central Daylight Time)", 9)
+            test("Fri Feb 02 2022 01:15:38 GMT-0600 (Central Daylight Time)", 9)
+
+            test("Fri Mar 24 2022 22:59:38 GMT-0500 (Central Daylight Time)", 59)
+            test("Fri Mar 24 2022 23:42:38 GMT-0500 (Central Daylight Time)", 59)
+            test("Fri Mar 25 2022 00:42:38 GMT-0500 (Central Daylight Time)", 60)
+            test("Fri Mar 25 2022 01:42:38 GMT-0500 (Central Daylight Time)", 60)
+            test("Fri Mar 25 2022 23:42:38 GMT-0500 (Central Daylight Time)", 60)
+         */
+        seed = dateDiffInDays(new Date('01/24/2022'), new Date());
 
         printclear(acquire("game_title"), "ежедневный octordle #" + seed.toString(10).padStart(4, "0"));
         window.last_daily = seed;
@@ -1491,7 +1528,6 @@ acquire("exit_fullscreen").onclick = function() {
 
 acquire("widescreen-yes").onclick = function() {
     localStorage.setItem('widescreen', "yes");
-    localStorage.setItem("widescreen-feedback", addDays(new Date(), 2));
     if (window.gtag) {
         gtag("event", "widescreen", {
             mode: "yes",
@@ -1519,36 +1555,8 @@ acquire("widescreen-no").onclick = function() {
 
 acquire("widescreen-reset").onclick = function() {
     localStorage.removeItem('widescreen');
-    localStorage.removeItem("widescreen-feedback");
     if (window.gtag) {
         gtag("event", "widescreen-reset", {
-            width: window.innerWidth
-        });
-    }
-    window.onresize();
-}
-
-acquire("widescreen-feedback-yes").onclick = function() {
-    localStorage.setItem('widescreen-feedback', "yes");
-    if (window.gtag) {
-        gtag("event", "widescreen-feedback", {
-            mode: "yes",
-            width: window.innerWidth
-        });
-        gtag("event", "widescreen-feedback-yes", {
-            width: window.innerWidth
-        });
-    }
-    window.onresize();
-}
-acquire("widescreen-feedback-no").onclick = function() {
-    localStorage.setItem('widescreen-feedback', "no");
-    if (window.gtag) {
-        gtag("event", "widescreen-feedback", {
-            mode: "no",
-            width: window.innerWidth
-        });
-        gtag("event", "widescreen-feedback-no", {
             width: window.innerWidth
         });
     }
@@ -1602,9 +1610,6 @@ acquire("share").onclick = function() {
 acquire("share_clipboard").onclick = function() {
     do_share(true, "clipboard");
 }
-// acquire("share_image").onclick = function() {
-//     do_share(true, "image");
-// }
 acquire("reset_free").onclick = function() {
     vibrate();
     if (isInWebViewiOS || confirm("Начать новый случайный Octordle? (Текущая игра будет потеряна)")) {
@@ -1658,7 +1663,6 @@ function do_share(copy, shareType) {
     let answer = window.answer;
     let share = window.share;
     let text_share = "";
-    let text_mobile_share = "";
     let seed = window.seed;
     let line = window.line;
 
@@ -1691,41 +1695,6 @@ function do_share(copy, shareType) {
     }
 
     text_share += "\nboriselec.com/octordle";
-    text_mobile_share = text_share
-    text_share += "\n"
-
-
-    let l1 = line - 1;
-    if (answer_correct[0] >= 0 && answer_correct[1] >= 0 ) {
-        l1 = Math.max(answer_correct[0], answer_correct[1])
-    }
-    let l2 = line - 1;
-    if (answer_correct[2] >= 0 && answer_correct[3] >= 0) {
-        l2 = Math.max(answer_correct[2], answer_correct[3])
-    }
-    let l3 = line - 1;
-    if (answer_correct[4] >= 0 && answer_correct[5] >= 0) {
-        l3 = Math.max(answer_correct[4], answer_correct[5])
-    }
-    let l4 = line - 1;
-    if (answer_correct[6] >= 0 && answer_correct[7] >= 0) {
-        l4 = Math.max(answer_correct[6], answer_correct[7])
-    }
-    for (let i = 0; i <= l1; i++) {
-        text_share += share[0][i] + " " + share[1][i] + "\n";
-    }
-    text_share += "\n"
-    for (let i = 0; i <= l2; i++) {
-        text_share += share[2][i] + " " + share[3][i] + "\n";
-    }
-    text_share += "\n"
-    for (let i = 0; i <= l3; i++) {
-        text_share += share[4][i] + " " + share[5][i] + "\n";
-    }
-    text_share += "\n"
-    for (let i = 0; i <= l4; i++) {
-        text_share += share[6][i] + " " + share[7][i] + "\n";
-    }
 
     if (copy && window.gtag) {
         gtag("event", "share", {
@@ -1735,7 +1704,7 @@ function do_share(copy, shareType) {
         });
     }
 
-    printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
+    printclear(acquire("share_content"), text_share);
 
     if (copy) {
         acquire("share_content").select();
@@ -1752,194 +1721,6 @@ function do_share(copy, shareType) {
         if (shareType === "share") {
             navigator.share({
                 text: text_share,
-            });
-        } else if (shareType === "image") {
-            var size = 64;
-            var padding = size / 16;
-            var radius = size / 8;
-            var fontScale = 0.75;
-            var textPadding = size / 4;
-            const canvas = document.querySelector("#canvas");
-            canvas.width = (size + padding) * 11 - padding
-            canvas.height = (size + padding) * (l1 + 1 + l2 + 1 + l3 + 1 + l4 + 1 + 4) - padding;
-            const ctx = canvas.getContext("2d");
-            ctx.fillStyle = "black";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // draw words 1 + 2
-            var x = 0;
-            var y = 0;
-            for (var i = 0; i <= l1; i++) {
-                var emojiStr = share[0][i];
-                x = 0;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-
-                emojiStr = share[1][i];
-                x = 6;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-                y++;
-            }
-
-            // draw middle text
-            ctx.font = size * fontScale + 'px Arial';
-            ctx.textAlign = "center";
-            ctx.textBaseline = "alphabetic";
-            ctx.fillStyle = "#ffffff";
-
-            var titleText = daily_mode ? "Daily Octordle #" + seed.toString(10) : "Octordle";
-            var metrics = ctx.measureText(titleText);
-            var fontHeight = metrics.actualBoundingBoxAscent;
-            ctx.fillText(titleText, canvas.width / 2, y * (size + padding) + size - (size - fontHeight) / 2, canvas.width - textPadding * 2);
-            y++;
-            for (var row = 0; row < 4; row++) {
-                for (var i = 0; i < 2; i++) {
-                    ctx.fillStyle = answer_correct[i + row * 2] >= 0 ? "#00a6ed" : "#f8312f";
-                    var dir = (i * 2 - 1)
-                    var xTopCenter = canvas.width / 2 + dir * (padding / 2) + dir * (size / 2)
-                    roundRect(ctx, xTopCenter - size / 2, y * (size + padding), size, size, radius);
-                    if (answer_correct[i + row * 2] >= 0) {
-                        ctx.textAlign = "center";
-                        ctx.fillStyle = "#ffffff";
-                        var numText = answer_correct[i + row * 2] + 1
-                        metrics = ctx.measureText(numText);
-                        fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-                        ctx.fillText(
-                            numText,
-                            xTopCenter,
-                            y * (size + padding) + size - (size - fontHeight) / 2,
-                            size
-                        );
-                    }
-                }
-                if (free_mode && shouldShowWords) {
-                    ctx.textAlign = "right";
-                    ctx.fillStyle = "#ffffff";
-                    var wordText = answer[0 + row * 2].toUpperCase()
-                    metrics = ctx.measureText(wordText);
-                    fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-                    ctx.fillText(
-                        wordText,
-                        canvas.width / 2 - padding / 2 - size - textPadding,
-                        y * (size + padding) + size - (size - fontHeight) / 2,
-                        canvas.width / 2 - padding - size - textPadding * 2
-                    )
-                    ctx.textAlign = "left";
-                    wordText = answer[1 + row * 2].toUpperCase()
-                    metrics = ctx.measureText(wordText);
-                    fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
-                    ctx.fillText(
-                        wordText,
-                        canvas.width / 2 + padding / 2 + size + textPadding,
-                        y * (size + padding) + size - (size - fontHeight) / 2,
-                        canvas.width / 2 - padding - size - textPadding * 2
-                    )
-                }
-                y++;
-            }
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText("octordle", canvas.width / 2, y * (size + padding) + (size / 2), canvas.width);
-            y++;
-
-            // draw words 3 + 4
-            for (var i = 0; i <= l2; i++) {
-                var emojiStr = share[2][i];
-                x = 0;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-
-                emojiStr = share[3][i];
-                x = 6;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-                y++;
-            }
-
-            // draw words 5 + 6
-            for (var i = 0; i <= l3; i++) {
-                var emojiStr = share[4][i];
-                x = 0;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-
-                emojiStr = share[5][i];
-                x = 6;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-                y++;
-            }
-
-            // draw words 7 + 8
-            for (var i = 0; i <= l3; i++) {
-                var emojiStr = share[6][i];
-                x = 0;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-
-                emojiStr = share[7][i];
-                x = 6;
-                while (emojiStr) {
-                    var pair = get_next_color_from_emojis(emojiStr)
-                    var color = pair[0]
-                    emojiStr = pair[1]
-                    ctx.fillStyle = color;
-                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
-                    x++;
-                }
-                y++;
-            }
-
-            canvas.toBlob(function(blob) {
-                var file = new File([blob], "octordle.png", { type: "image/png" });
-                navigator.share({
-                    files: [file],
-                    text: text_mobile_share
-                });
             });
         }
     }
@@ -2034,17 +1815,6 @@ window.onresize = function() {
     acquire('normal-container').style.display = showNormalScreen ? "block" : "none";
     acquire('widescreen-container').style.display = showWidescreen ? "block" : "none";
     acquire('widescreen-reset').style.display = showReset ? "block" : "none";
-    acquire('widescreen-feedback').style.display = showWidescreenFeedback(showWidescreen) ? "block" : "none";
-
-    function showWidescreenFeedback(showWidescreen) {
-        let widescreenFeedback = localStorage.getItem("widescreen-feedback");
-        let widescreenFeedbackProvided = widescreenFeedback === "yes" || widescreenFeedback === "no"
-        let widescreenDate = widescreenFeedback && !widescreenFeedbackProvided && tryParseDate(widescreenFeedback);
-        if(!!mode && !widescreenFeedbackProvided && !widescreenFeedback) {
-            localStorage.setItem("widescreen-feedback", addDays(new Date(), 1));
-        }
-        return showWidescreen && !widescreenFeedbackProvided && widescreenDate && widescreenDate < new Date();
-    }
 }
 window.onresize();
 
@@ -2081,8 +1851,7 @@ onStateChange();
         "Smile at someone"
     ];
 
-    let diff = new Date() - new Date('02/23/2022');
-    let days = Math.floor(diff / (1000 * 60 *60 *24));
+    let days = dateDiffInDays(new Date('02/23/2022'), new Date());
 
     let todaysGiveordle = giveordles[days % giveordles.length];
 
