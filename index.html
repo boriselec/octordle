@@ -31,14 +31,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://googletagmanager.com/gtag/js?id=G-X7RXK3GNJ9"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X7RXK3GNJ9');
 </script>
 <style>
 html {
@@ -977,12 +971,6 @@ function initDaily() {
         acquire("fullscreen").style.display = "none";
         acquire("exit_fullscreen").style.display = "none";
     }
-    if (window.gtag) {
-        gtag("event", "start", {
-            mode: "daily",
-            daily_seed: daily_mode ? seed : undefined
-        });
-    }
 }
 
 function initFree() {
@@ -999,12 +987,6 @@ function initFree() {
     } else {
         acquire("fullscreen").style.display = "none";
         acquire("exit_fullscreen").style.display = "none";
-    }
-    if (window.gtag) {
-        gtag("event", "start", {
-            mode: "free",
-            daily_seed: undefined
-        });
     }
 }
 
@@ -1030,9 +1012,6 @@ function initTutorial() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "none";
     acquire("tutorial").style.display = "";
-    if (window.gtag) {
-        gtag("event", "tutorial");
-    }
 }
 
 function initTitle() {
@@ -1045,12 +1024,6 @@ function initTitle() {
     acquire("tutorial").style.display = "none";
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
     exitFullscreen();
-    if (window.gtag) {
-        gtag("event", "back", {
-            mode: mode_leaving,
-            daily_seed: seed_leaving
-        });
-    }
 
     window.onresize();
 }
@@ -1112,13 +1085,6 @@ function pk(key, keyCode) {
             return;
         }
         if (column >= TOTAL_COLUMNS) {
-            if (!restoring_game && window.gtag) {
-                gtag("event", "guess", {
-                    mode: daily_mode ? "daily" : "free",
-                    daily_seed: daily_mode ? seed : undefined,
-                    word: guess_current
-                });
-            }
             guesses.push(guess_current);
 
             forEachCellForLineColumn(line, column - 1, (box, el) => {
@@ -1140,31 +1106,10 @@ function pk(key, keyCode) {
                 acquire("body").style.backgroundColor = "green";
                 acquire("body").style.color = "black";
                 show_post_game(true);
-                if (!restoring_game && window.gtag) {
-                    gtag("event", "win", {
-                        mode: daily_mode ? "daily" : "free",
-                        daily_seed: daily_mode ? seed : undefined,
-                        guesses: guesses
-                    });
-                }
             } else if (line >= TOTAL_LINES) {
                 acquire("body").style.backgroundColor = "red";
                 acquire("body").style.color = "black";
                 show_post_game(true);
-                if (!restoring_game && window.gtag) {
-                    var totalCorrect = 0;
-                    for (var i = 0; i < answer_correct.length; i++) {
-                        if (answer_correct[i] >= 0) {
-                            totalCorrect++;
-                        }
-                    }
-                    gtag("event", "loss", {
-                        mode: daily_mode ? "daily" : "free",
-                        daily_seed: daily_mode ? seed : undefined,
-                        guesses: guesses,
-                        total_correct: totalCorrect
-                    });
-                }
             }
 
             render_bg_keys();
@@ -1419,12 +1364,6 @@ function restart() {
                     pk("enter", 13)
                 }
                 restoring_game = false
-                if (window.gtag) {
-                    gtag("event", "restore", {
-                        mode: daily_mode ? "daily" : "free",
-                        daily_seed: daily_mode ? seed : undefined
-                    });
-                }
             }
         } catch (e) {
             window.no_localstorage = true;
@@ -1528,38 +1467,15 @@ acquire("exit_fullscreen").onclick = function() {
 
 acquire("widescreen-yes").onclick = function() {
     localStorage.setItem('widescreen', "yes");
-    if (window.gtag) {
-        gtag("event", "widescreen", {
-            mode: "yes",
-            width: window.innerWidth
-        });
-        gtag("event", "widescreen-yes", {
-            width: window.innerWidth
-        });
-    }
     window.onresize();
 }
 acquire("widescreen-no").onclick = function() {
     localStorage.setItem('widescreen', "no");
-    if (window.gtag) {
-        gtag("event", "widescreen", {
-            mode: "no",
-            width: window.innerWidth
-        });
-        gtag("event", "widescreen-no", {
-            width: window.innerWidth
-        });
-    }
     window.onresize();
 }
 
 acquire("widescreen-reset").onclick = function() {
     localStorage.removeItem('widescreen');
-    if (window.gtag) {
-        gtag("event", "widescreen-reset", {
-            width: window.innerWidth
-        });
-    }
     window.onresize();
 }
 
@@ -1696,14 +1612,6 @@ function do_share(copy, shareType) {
 
     text_share += "\nboriselec.com/octordle";
 
-    if (copy && window.gtag) {
-        gtag("event", "share", {
-            mode: daily_mode ? "daily" : "free",
-            share_type: shareType,
-            daily_seed: daily_mode ? seed : undefined
-        });
-    }
-
     printclear(acquire("share_content"), text_share);
 
     if (copy) {
@@ -1773,11 +1681,6 @@ function tryParseDate(str) {
     try {
         return new Date(str);
     } catch (e) {
-        if (window.gtag) {
-            gtag("event", "parse-date-fail", {
-                str: str
-            });
-        }
     }
 }
 
