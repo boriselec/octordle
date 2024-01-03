@@ -1821,49 +1821,6 @@ window.onresize();
 setupBoxes();
 onStateChange();
 
-(function init() {
-    let giveordles = [
-        "Shout out to Les, Jess, Brad, Tina, Lisa, Matt A! ♥",
-        "Donate to your favorite non-profit",
-        "Do a little cleaning at home",
-        "Introduce yourself to someone new",
-        "Compliment someone",
-        "Pet an animal",
-        "Call a parent or child and tell them you love them",
-        "Tip a little extra",
-        "Clean up some litter",
-        "Tweet your favorite musician, especially less known ones. @portugaltheman @AesopRockWins",
-        "Give instead of take",
-        "Buy somebody coffee",
-        "Text that friend you've been thinking about but haven't texted",
-        "Buy a book for somebody",
-        "Workout! a little or a lot",
-        "Donate blood",
-        "Give a loved one a gift",
-        "Let it go",
-        "Recycle something today",
-        "Help the new person at work",
-        "Make a meal for someone",
-        "Let it be",
-        "Volunteer this weekend",
-        "Put a stray shopping cart away. Cart-Narc! Whoop Whoop!",
-        "Buy someone flowers",
-        "Smile at someone"
-    ];
-
-    let days = dateDiffInDays(new Date('02/23/2022'), new Date());
-
-    let todaysGiveordle = giveordles[days % giveordles.length];
-
-    let giveordle = acquire('giveordle-text');
-    if(todaysGiveordle) {
-        clear(giveordle);
-        ppint(giveordle, todaysGiveordle);
-    } else{
-        clear(giveordle);
-    }
-})();
-
 </script>
 </body>
 </html>
